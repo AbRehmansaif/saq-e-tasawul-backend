@@ -9,48 +9,34 @@ class User(AbstractUser):
         verbose_name = _("User")
         verbose_name_plural = _("Users")
     
-    email = models.EmailField(
-        unique=True,
-        verbose_name=_("E-mail")
+    phone = models.CharField(
+        max_length=15, blank=True
     )
-    
+    email_verify = models.BooleanField(
+        default=False
+    )
     first_name = models.CharField(
-        max_length=150,
-        blank=True,
-        verbose_name=_("First Name")
+        max_length=150, blank=True
     )
-    
     last_name = models.CharField(
-        max_length=150,
-        blank=True,
-        verbose_name=_("Last Name")
+        max_length=150, blank=True
     )
-       
-    is_active = models.BooleanField(
-        default=True,
-        verbose_name=_("Active Status")
+    status = models.CharField(
+        max_length=20, default='active'
     )
-    
-    created_at = models.DateTimeField(
-        auto_now_add=True
+    profile_image = models.ImageField(
+        upload_to='profile_images/', null=True, 
+        blank=True
     )
-    
-    updated_at = models.DateTimeField(
-        auto_now=True
+    address = models.TextField(
+        blank=True
     )
-    
-    groups = models.ManyToManyField(
-        Group,
-        related_name="custom_user_groups", 
-        blank=True,
+    newsletter_subscription = models.BooleanField(
+        default=False
     )
-
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name="custom_user_permissions",
-        blank=True,
-    )
-    
-    def __str__(self):
-        return self.get_full_name() or self.username
-
+    preferences = models.JSONField(
+        default=dict, blank=True
+    )  # Store user preferences for recommendations
+    search_history = models.JSONField(
+        default=list, blank=True
+    )  # Store search history for better recommendations
