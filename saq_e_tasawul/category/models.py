@@ -34,3 +34,6 @@ class Category(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name=_('Updated At')
     )
+    
+    def __str__(self):
+        return self.name
