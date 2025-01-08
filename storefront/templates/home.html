@@ -18,13 +18,12 @@
 </head>
 
 <body>
-
+<div id="app">
   {% block header %}
   {% include 'header.html' %}
   {% endblock %}
 
   <main>
-
     {% block banner %}
     {% include 'banner.html' %}
     {% endblock %}
@@ -47,6 +46,8 @@
   {% block footer %}
   {% include 'footer.html' %}
   {% endblock %}
+</div>
+  
 
 
 
@@ -64,8 +65,26 @@
     createApp({
       setup() {
         const message = ref('Hello vue!')
+        const categories = ref([
+          {
+            img: "/static/images/icons/dress.svg",
+            title: "Dress & frock",
+            item_amount: 53,
+          },
+          {
+            img: "/static/images/icons/dress.svg",
+            title: "fuck",
+            item_amount: 20,
+          },
+          {
+            img: "/static/images/icons/dress.svg",
+            title: "lora",
+            item_amount: 20,
+          }
+        ])
         return {
-          message
+          message,
+          categories
         }
       }
     }).mount('#app')
