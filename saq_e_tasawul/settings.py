@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'product',
     'review',
     'shipping',
-    'shipping_details',
     'sub_category',
     'user',
     'wishlist'
