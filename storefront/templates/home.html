@@ -1,59 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anon - eCommerce Website</title>
-    {% load static %}
 
-    <link
-      rel="shortcut icon"
-      href="{%static 'images/logo/favicon.ico'%}"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="{% static 'css/style-prefix.css' %}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anon - eCommerce Website</title>
+  {% load static %}
 
-  <body>
-    {% block header %} {% include 'header.html' %} {% endblock %}
+  <link rel="shortcut icon" href="{%static 'images/logo/favicon.ico'%}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/style-prefix.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-    <main>
-      {% block banner %} {% include 'banner.html' %} {% endblock %} {% block
-      category %} {% include 'category.html' %} {% endblock %} {% block product
-      %} {% include 'products.html' %} {% endblock %} {% block testimonials %}
-      {% include 'testimonials.html' %} {% endblock %}
-    </main>
+</head>
 
-    {% block footer %} {% include 'footer.html' %} {% endblock %}
+<body>
 
-    <script src="./assets/js/script.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script>
-      const { createApp, ref } = Vue;
+  {% block header %}
+  {% include 'header.html' %}
+  {% endblock %}
 
-      createApp({
-        setup() {
-          const message = ref("Hello vue!");
-          return {
-            message,
-          };
-        },
-      }).mount("#app");
-    </script>
-  </body>
+  <main>
+
+    {% block banner %}
+    {% include 'banner.html' %}
+    {% endblock %}
+
+    {% block category %}
+    {% include 'category.html' %}
+    {% endblock %}
+    
+    {% block product %}
+    {% include 'products.html' %}
+    {% endblock %}
+
+    {% block testimonials %}
+    {% include 'testimonials.html' %}
+    {% endblock %}
+
+
+  </main>
+
+  {% block footer %}
+  {% include 'footer.html' %}
+  {% endblock %}
+
+
+
+
+
+
+
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+  
+    createApp({
+      setup() {
+        const message = ref('Hello vue!')
+        return {
+          message
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
 </html>
