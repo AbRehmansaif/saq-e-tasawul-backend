@@ -23,9 +23,6 @@ class Wishlist(models.Model):
     notification_enabled = models.BooleanField(
         default=False
     )  # Notify when price drops
-    notes = models.TextField(
-        blank=True
-    )  # Personal notes about the product
         
     def __str__(self):
         return f"{self.user.username} - {self.product.product_name}"
