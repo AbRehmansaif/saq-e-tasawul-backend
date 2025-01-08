@@ -41,16 +41,16 @@ class Product(models.Model):
         max_digits=5, decimal_places=2, 
         null=True, blank=True
     )
-    max_price = models.PositiveIntegerField(
-        max_digit=10, decimal_places=2,
+    max_price = models.DecimalField(
+        max_digits=10, decimal_places=2,
         null=True, blank=True
     )
-    selling_price = models.PositiveIntegerField(
-        max_digit=10, decimal_places=2,
+    selling_price = models.DecimalField(
+        max_digits=10, decimal_places=2,
         null=True, blank=True
     )
-    base_price = models.PositiveIntegerField(
-        max_digit=10, decimal_places=2,
+    base_price = models.DecimalField(
+        max_digits=10, decimal_places=2,
         null=True, blank=True
     )
     rating = models.FloatField(

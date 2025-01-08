@@ -47,6 +47,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'storefront',
+    'cart',
+    'category',
+    'coupon',
+    'order_details',
+    'payment',
+    'product',
+    'review',
+    'shipping',
+    'shipping_details',
+    'sub_category',
+    'user',
+    'wishlist'
 ]
 
 MIDDLEWARE = [
