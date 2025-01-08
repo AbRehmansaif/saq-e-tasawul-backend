@@ -11,20 +11,21 @@ class Order(models.Model):
         verbose_name_plural = _('Orders')
         
     user = models.ForeignKey(
-        'User', on_delete=models.CASCADE, 
-        verbose_name=_('User'),
+        'user.User', on_delete=models.CASCADE, 
+        verbose_name=_('User')
     )
     order_number = models.CharField(
         max_length=50, unique=True,
         verbose_name=_('Order number')
     )
     product = models.ForeignKey(
-        'Product', on_delete=models.CASCADE
+        'product.Product', on_delete=models.CASCADE,
+        verbose_name=_('Product')
     )
     quantity = models.IntegerField(
         default=1
     )
-    order_at = models.DateTimeField(
+    ordered_at = models.DateTimeField(
         auto_now_add=True
     )
     total_payment = models.DecimalField(
@@ -33,13 +34,15 @@ class Order(models.Model):
     )
     status = models.CharField(
         max_length=20, choices=OrderStatus.choices(), 
-        default=OrderStatus.PENDING.value
+        default=OrderStatus.PENDING.value[0],
+        verbose_name=_('Status')
     )
     tracking_number = models.CharField(
         max_length=100, blank=True
     )
     estimated_delivery = models.DateField(
-        null=True
+        null=True, blank=True,
+        verbose_name=_('Estimated Delivery')
     )
     
 class OrderDetails(models.Model):
@@ -51,7 +54,7 @@ class OrderDetails(models.Model):
         max_length=100, null=True,
         blank=True
     )
-    order_id = models.CharField(
+    transaction_id = models.CharField(
         max_length=100, null=True,
         blank=True
     )

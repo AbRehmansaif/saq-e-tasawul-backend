@@ -8,3 +8,7 @@ class ShippingMethod(Enum):
     OVERNIGHT     = ("overnight",     _("Overnight shipping (next-day delivery)."))
     INTERNATIONAL = ("international", _("International shipping (varies by destination)."))
     PICKUP        = ("pickup",        _("Pickup from store or warehouse."))
+    
+    @classmethod
+    def choices(cls):
+        return [(key.value[0], key.value[1]) for key in cls]

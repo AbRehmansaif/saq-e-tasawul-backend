@@ -10,11 +10,11 @@ class Wishlist(models.Model):
         verbose_name_plural = _('Wishlists')
         
     user = models.ForeignKey(
-        'User', on_delete=models.CASCADE, 
+        'user.User', on_delete=models.CASCADE, 
         related_name='favorites'
     )
     product = models.ForeignKey(
-        'Product', on_delete=models.CASCADE, 
+        'product.Product', on_delete=models.CASCADE, 
         related_name='favorited_by'
     )
     added_at = models.DateTimeField(
