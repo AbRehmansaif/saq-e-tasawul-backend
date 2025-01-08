@@ -14,8 +14,8 @@ class Payment(models.Model):
         related_name='payment'
     )
     amount = models.ForeignKey(
-        OrderDetails.total_payment, on_delete=models.CASCADE,
-        verbose_name = _('Amount')
+        OrderDetails, on_delete=models.CASCADE,
+        verbose_name = _('Amount'), related_name='payments'
     )
     status = models.BooleanField(
         max_length=20,
