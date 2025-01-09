@@ -7,7 +7,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = [
             'name', 'description',
-            'imange', 'is_active',
+            'image', 'is_active',
             'meta_title', 'meta_description',
             'slug', 'created_at',
             'updated_at'
