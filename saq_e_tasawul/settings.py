@@ -57,7 +57,10 @@ INSTALLED_APPS = [
     'shipping',
     'sub_category',
     'user',
-    'wishlist'
+    'wishlist',
+    'api',
+    
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
