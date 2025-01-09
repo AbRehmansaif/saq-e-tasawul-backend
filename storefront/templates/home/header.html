@@ -31,10 +31,10 @@
       </div>
       <ul class="nav__list">
         <li class="nav__item">
-          <a href="index.html" class="nav__link active-link">Home</a>
+          <a href="{% url 'home' %}" class="nav__link active-link">Home</a>
         </li>
         <li class="nav__item">
-          <a href="shop.html" class="nav__link">Shop</a>
+          <a href="{% url 'shop' %}" class="nav__link">Shop</a>
         </li>
         <li class="nav__item">
           <a href="accounts.html" class="nav__link">My Account</a>
@@ -58,11 +58,11 @@
       </div>
     </div>
     <div class="header__user-actions">
-      <a href="wishlist.html" class="header__action-btn" title="Wishlist">
+      <a href="{% url 'wishlist' %}" class="header__action-btn" title="Wishlist">
         <img src="/static/img/icon-heart.svg" alt="" />
         <span class="count">3</span>
       </a>
-      <a href="cart.html" class="header__action-btn" title="Cart">
+      <a href="{% url 'cart' %}" class="header__action-btn" title="Cart">
         <img src="/static/img/icon-cart.svg" alt="" />
         <span class="count">3</span>
       </a>
