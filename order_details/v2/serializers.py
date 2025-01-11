@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from order_details import Order, OrderDetails
+from order_details.models import Order, OrderDetails
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'estimated_delivery'
         ]
         
-class OrderDetailsSerializers(serilaizers.ModelSerializer):
+class OrderDetailsSerializers(serializers.ModelSerializer):
     class Meta:
         model = OrderDetails
         fields = [

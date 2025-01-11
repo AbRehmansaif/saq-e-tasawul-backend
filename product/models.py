@@ -9,7 +9,7 @@ class Product(models.Model):
         Category, on_delete=models.CASCADE, 
         related_name='products'
     )
-    producat_name = models.CharField(
+    product_name = models.CharField(
         max_length=255, null=True,
         blank=True
     )

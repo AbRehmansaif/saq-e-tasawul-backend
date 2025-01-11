@@ -13,7 +13,7 @@
   </div>
 
   <nav class="nav container">
-    <a href="index.html" class="nav__logo">
+    <a href="{% url 'home' %}" class="nav__logo">
       <img
         class="nav__logo-img"
         src="/static/img/logo.svg"
@@ -22,7 +22,7 @@
     </a>
     <div class="nav__menu" id="nav-menu">
       <div class="nav__menu-top">
-        <a href="index.html" class="nav__menu-logo">
+        <a href="{% url 'home' %}" class="nav__menu-logo">
           <img src="/static/img/logo.svg" alt="" />
         </a>
         <div class="nav__close" id="nav-close">

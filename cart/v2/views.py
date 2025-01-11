@@ -1,10 +1,14 @@
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework import generics
 from cart.v2.serializers import CartSerializer
+from cart.models import Cart
 
-
-class CartViewSet(viewsets.ModelViewSet):
+# GET request - List all Carts
+class CartListView(generics.ListCreateAPIView):
+    queryset = Cart.objects.all()
     serializer_class = CartSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+
+
+# POST request - Create a new Cart
+class CartCreateView(generics.CreateAPIView):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
