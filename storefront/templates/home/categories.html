@@ -1,10 +1,15 @@
+{% verbatim %}
+
 <section class="categories container section">
-  <h3 class="section__title"><span>Popular</span> Categories</h3>
-  <div class="categories__container swiper">
-    <div class="swiper-wrapper">
+  <h3 class="section__title">
+    <span>Popular</span>
+    Categories
+  </h3>
+  <div class="categories__container swiper" style="border: 1px solid black; display:flex">
+    <div v-for="(category,index) in categories" :key="index" class="swiper-wrapper">
       <a href="shop.html" class="category__item swiper-slide">
-        <img src="/static/img/category-1.jpg" alt="" class="category__img" />
-        <h3 class="category__title">T-Shirt</h3>
+        <img :src="category.img" alt="" class="category__img" />
+        <h3 class="category__title">{{ category.name }}</h3>
       </a>
     </div>
 
@@ -16,3 +21,4 @@
     </div>
   </div>
 </section>
+{% endverbatim %}

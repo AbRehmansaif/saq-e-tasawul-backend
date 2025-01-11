@@ -22,56 +22,60 @@
     <title>Ecommerce Website</title>
   </head>
   <body>
-    <!--=============== HEADER ===============-->
-    {% block header %}
-    {% include 'home/header.html' %}
-    {% endblock %}
-    <!--=============== MAIN ===============-->
-    <main class="main">
-      <!--=============== HOME ===============-->
-      {% block banner %}
-      {% include 'home/banner.html' %}
+    <div id="app">
+      <!--=============== HEADER ===============-->
+      {% block header %}
+      {% include 'home/header.html' %}
       {% endblock %}
-
-      <!--=============== CATEGORIES ===============-->
-      {% block categories %}
-      {% include 'home/categories.html' %}
+      <!--=============== MAIN ===============-->
+      <main class="main">
+        <!--=============== HOME ===============-->
+        {% block banner %}
+        {% include 'home/banner.html' %}
+        {% endblock %}
+  
+        <!--=============== CATEGORIES ===============-->
+        {% block categories %}
+        {% include 'home/categories.html' %}
+        {% endblock %}
+        <!--=============== PRODUCTS ===============-->
+        
+        {% block products %}
+        {% include 'home/products.html' %}
+        {% endblock %}
+        <!--=============== DEALS ===============-->
+        
+        {% block deals %}
+        {% include 'home/deals.html' %}
+        {% endblock %}
+        <!--=============== NEW ARRIVALS ===============-->
+        {% block new_arrivals %}
+        {% include 'home/new_arrivals.html' %}
+        {% endblock %}
+  
+        <!--=============== SHOWCASE ===============-->
+        
+        {% block showcase %}
+        {% include 'home/showcase.html' %}
+        {% endblock %}
+        <!--=============== NEWSLETTER ===============-->
+        {% block newsletter %}
+        {% include 'home/newsletter.html' %}
+        {% endblock %}
+      </main>
+  
+      <!--=============== FOOTER ===============-->
+      {% block footer %}
+      {% include 'home/footer.html' %}
       {% endblock %}
-      <!--=============== PRODUCTS ===============-->
-      
-      {% block products %}
-      {% include 'home/products.html' %}
-      {% endblock %}
-      <!--=============== DEALS ===============-->
-      
-      {% block deals %}
-      {% include 'home/deals.html' %}
-      {% endblock %}
-      <!--=============== NEW ARRIVALS ===============-->
-      {% block new_arrivals %}
-      {% include 'home/new_arrivals.html' %}
-      {% endblock %}
-
-      <!--=============== SHOWCASE ===============-->
-      
-      {% block showcase %}
-      {% include 'home/showcase.html' %}
-      {% endblock %}
-      <!--=============== NEWSLETTER ===============-->
-      {% block newsletter %}
-      {% include 'home/newsletter.html' %}
-      {% endblock %}
-    </main>
-
-    <!--=============== FOOTER ===============-->
-    {% block footer %}
-    {% include 'home/footer.html' %}
-    {% endblock %}
+    </div>
 
     <!--=============== SWIPER JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!--=============== MAIN JS ===============-->
+    <script src="/static/js/index.js"></script>
     <script src="/static/js/main.js"></script>
+    
   </body>
 </html>
