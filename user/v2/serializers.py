@@ -1,55 +1,84 @@
 from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from user.models import User
-class UserRegistrationSerializer(serializers.ModelSerializer):
-    password_1 = serializers.CharField(
-        write_only=True, 
-        required=True, 
-        validators=[validate_password]
+from django.db.models import Q
+from django.contrib.auth.hashers import check_password
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+        write_only=True, required=True, validators=[validate_password]
     )
-    password_2 = serializers.CharField(
-        write_only=True, 
-        required=True
+    confirm_password = serializers.CharField(
+        write_only=True, required=True
     )
+
     class Meta:
         model = User
         fields = (
-            'username', 'email', 
+            'email', 'phone', 
             'first_name', 'last_name', 
-            'password_1', 'password_2',
-            'is_active', 'created_at',
-            'updated_at'
+            'password', 'confirm_password'
         )
-        extra_kwargs = {
-            'first_name': {'required': False},
-            'last_name': {'required': False}
-        }
+
     def validate(self, attrs):
-        if attrs['password_1'] != attrs['password_2']:
-            raise serializers.ValidationError(
-                {"password_2": "Password fields didn't match."}
-            )
+        if attrs['password'] != attrs['confirm_password']:
+            raise serializers.ValidationError({"password": "Password fields didn't match."})
         return attrs
+
     def create(self, validated_data):
-        validated_data.pop('password_2')
-        password = validated_data.pop('password_1')
-        
+        validated_data.pop('confirm_password')
         user = User.objects.create_user(
-            **validated_data,
-            password=password
+            username=validated_data['email'],  # Using email as username
+            **validated_data
         )
         return user
+
+class LoginSerializer(serializers.Serializer):
+    login_field = serializers.CharField()  # This will accept either email or phone
+    password = serializers.CharField()
+
+class ForgotPasswordSerializer(serializers.Serializer):
+    login_field = serializers.CharField()  # Accepts either email or phone
+    old_password = serializers.CharField()
+    new_password = serializers.CharField(validators=[validate_password])
+    confirm_password = serializers.CharField()
+
+    def validate(self, attrs):
+        # Check if new_password and confirm_password match
+        if attrs['new_password'] != attrs['confirm_password']:
+            raise serializers.ValidationError({
+                "confirm_password": "Password fields didn't match."
+            })
+
+        # Verify the old password matches the user's current password
+        login_field = attrs.get('login_field')
+        old_password = attrs.get('old_password')
+
+        # Fetch the user
+        user = User.objects.filter(Q(email=login_field) | Q(phone=login_field)).first()
+        if not user:
+            raise serializers.ValidationError({"login_field": "User not found."})
+
+        if not check_password(old_password, user.password):
+            raise serializers.ValidationError({"old_password": "Old password is incorrect."})
+
+        # Attach the user object for use in the view
+        attrs['user'] = user
+        return attrs
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'username', 'email', 
-            'first_name', 'last_name', 
-            
-            'is_active', 'created_at',
-            'updated_at', 'id'
+            'id', 'email', 
+            'phone', 'first_name', 
+            'last_name', 'address', 
+            'city', 'country', 
+            'postal_code', 'profile_image', 
+            'profile_completed'
         )
         read_only_fields = (
-            'id', 'user_name', 'email', 
-            'is_active', 'created_at'
+            'id', 'email', 
+            'phone', 'profile_completed'
         )

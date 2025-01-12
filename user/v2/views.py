@@ -1,61 +1,95 @@
-from rest_framework import viewsets, status, permissions
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from django.db.models import Q
 from user.models import User
-from user.v2.serializers import UserRegistrationSerializer, UserProfileSerializer
+from user.v2.serializers import (
+    RegistrationSerializer, 
+    LoginSerializer, 
+    UserProfileSerializer,
+    ForgotPasswordSerializer
+)
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
 
-    def get_serializer_class(self):
-        if self.action == 'create':
-            return UserRegistrationSerializer
-        return UserProfileSerializer
-
     def get_permissions(self):
-        if self.action == 'create':
-            permission_classes = [AllowAny]
-        else:
-            permission_classes = [IsAuthenticated]
-        return [permission() for permission in permission_classes]
+        if self.action in ['register', 'login', 'forgot_password'] or self.request.method == 'POST':
+            return [AllowAny()]
+        return [IsAuthenticated()]
 
     @action(detail=False, methods=['POST'], permission_classes=[AllowAny])
     def register(self, request):
-        serializer = UserRegistrationSerializer(data=request.data)
+        serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            token, _ = Token.objects.get_or_create(user=user)
             return Response({
+                'token': token.key,
                 'user': UserProfileSerializer(user).data,
-                'message': 'User registered successfully'
+                'message': 'Registration successful'
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=False, methods=['POST'], permission_classes=[AllowAny])
     def login(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-        user = authenticate(username=username, password=password)
-        if user:
-            login(request, user)
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            login_field = serializer.validated_data['login_field']
+            password = serializer.validated_data['password']
+            
+            # Try to find user by email or phone
+            user = User.objects.filter(
+                Q(email=login_field) | Q(phone=login_field)
+            ).first()
+
+            if user and user.check_password(password):
+                token, _ = Token.objects.get_or_create(user=user)
+                return Response({
+                    'token': token.key,
+                    'user': UserProfileSerializer(user).data,
+                    'message': 'Login successful'
+                })
             return Response({
-                'user': UserProfileSerializer(user).data,
-                'message': 'Login successful'
-            })
-        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+                'error': 'Invalid credentials'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=False, methods=['POST'], permission_classes=[IsAuthenticated])
-    def logout(self, request):
-        logout(request)
-        return Response({'message': 'Logout successful'})
+    @action(detail=False, methods=['POST'], permission_classes=[AllowAny])
+    def forgot_password(self, request):
+        serializer = ForgotPasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            login_field = serializer.validated_data['login_field']
+            new_password = serializer.validated_data['new_password']
 
-    @action(detail=False, methods=['PATCH'], permission_classes=[IsAuthenticated])
-    def update_profile(self, request):
+            user = User.objects.filter(
+                Q(email=login_field) | Q(phone=login_field)
+            ).first()
+
+            if user:
+                user.set_password(new_password)
+                user.save()
+                return Response({
+                    'message': 'Password updated successfully'
+                })
+            return Response({
+                'error': 'User not found'
+            }, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=['PUT', 'PATCH'])
+    def complete_profile(self, request):
         user = request.user
         serializer = UserProfileSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
+            serializer.save(profile_completed=True)
+            return Response({
+                'user': serializer.data,
+                'message': 'Profile updated successfully'
+            })
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
