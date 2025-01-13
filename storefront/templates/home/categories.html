@@ -6,8 +6,8 @@
     Categories
   </h3>
   <div class="categories__container swiper" style="border: 1px solid black; display:flex">
-    <div v-for="(category,index) in categories" :key="index" class="swiper-wrapper">
-      <a href="shop.html" class="category__item swiper-slide">
+    <div class="swiper-wrapper">
+      <a v-for="(category,index) in categories" :key="index" href="shop.html" class="category__item swiper-slide">
         <img :src="category.img" alt="" class="category__img" />
         <h3 class="category__title">{{ category.name }}</h3>
       </a>
