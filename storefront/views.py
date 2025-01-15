@@ -12,3 +12,12 @@ def cart(request):
 
 def shop(request):
     return render(request, 'shop.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def register(request):
+    return render(request, 'register.html')
+
+def forget(request):
+    return render(request, 'forget.html')

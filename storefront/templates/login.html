@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== FLATICON ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
+    />
+
+    <!--=============== SWIPER CSS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <title>Ecommerce Website</title>
+  </head>
+  <body>
+    <!--=============== HEADER ===============-->
+    {% block header %}
+    {% include 'home/header.html' %}
+    {% endblock %}
+
+    <!--=============== MAIN ===============-->
+    <main class="main">
+      <!--=============== BREADCRUMB ===============-->
+      <section class="breadcrumb">
+        <ul class="breadcrumb__list flex container">
+          <li><a href="index.html" class="breadcrumb__link">Home</a></li>
+          <li><span class="breadcrumb__link">></span></li>
+          <li><span class="breadcrumb__link">Login / Register</span></li>
+        </ul>
+      </section>
+
+      <!--=============== LOGIN-REGISTER ===============-->
+      <section class="login-register section--lg">
+        <div class="login-register__container container grid">
+          <div class="login">
+            <h3 class="section__title">Login</h3>
+            <form class="form grid">
+              <input
+                type="email"
+                placeholder="Your Email"
+                class="form__input"
+              />
+              <input
+                type="password"
+                placeholder="Your Password"
+                class="form__input"
+              />
+              <a href="forget.html">Forget Password</a>
+              <div class="form__btn">
+                <button class="btn">Login</button>
+              </div>
+            </form>
+          </div>
+          <div class="form__btn">
+            <a class="btn" href="register.html">Register</a>
+          </div>
+        </div>
+      </section>
+
+      <!--=============== NEWSLETTER ===============-->
+      {% block newsletter %}
+      {% include 'home/newsletter.html' %}
+      {% endblock %}
+    </main>
+
+    <!--=============== FOOTER ===============-->
+    {% block footer %}
+    {% include 'home/footer.html' %}
+    {% endblock %}
+
+    <!--=============== SWIPER JS ===============-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="static/js/main.js"></script>
+  </body>
+</html>
