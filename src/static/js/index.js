@@ -18,6 +18,14 @@ const { createApp, ref } = Vue
             name:'Cup',
             description: 'This is watch category',
         },
+      ]);
+      const products = ref([
+        {
+          product_name: 'Abc',
+          description: 'this is Discription',
+          quantity: 3,
+          img:'',
+        }
       ])
       return {
         categories
