@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/static/css/styles.css" />
 
     <title>Ecommerce Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <!--=============== HEADER ===============-->
@@ -39,30 +40,31 @@
       </section>
 
       <!--=============== LOGIN-REGISTER ===============-->
-      <section class="login-register section--lg">
-        <div class="login-register__container container grid">
-          <div class="login">
-            <h3 class="section__title">Login</h3>
-            <form class="form grid">
-              <input
-                type="email"
-                placeholder="Your Email"
-                class="form__input"
-              />
-              <input
-                type="password"
-                placeholder="Your Password"
-                class="form__input"
-              />
-              <a href="forget.html">Forget Password</a>
-              <div class="form__btn">
-                <button class="btn">Login</button>
-              </div>
-            </form>
-          </div>
-          <div class="form__btn">
-            <a class="btn" href="register.html">Register</a>
-          </div>
+      <section class="flex justify-center items-center w-full my-14">
+        <div class="login w-1/2">
+          <h3 class="section__title">Login</h3>
+          <form class="form grid">
+            <input
+              type="email"
+              placeholder="Your Email"
+              class="form__input"
+            />
+            <input
+              type="password"
+              placeholder="Your Password"
+              class="form__input"
+            />
+            <a href="forget.html">Forget Password</a>
+            <div class="form__btn">
+              <button class="btn">Login</button>
+            </div>
+          </form>
+          <p class="text-center my-2">
+            Create new account ?
+            <a href="register.html" class="text-blue-500 hover:underline">
+              Sign Up
+            </a>
+          </p>
         </div>
       </section>
 

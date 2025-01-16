@@ -4,32 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--=============== FLATICON ===============-->
     <link
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
     />
 
-    <!--=============== SWIPER CSS ===============-->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
 
-    <!--=============== CSS ===============-->
     <link rel="stylesheet" href="/static/css/styles.css" />
 
     <title>Ecommerce Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <!--=============== HEADER ===============-->
     {% block header %}
     {% include 'home/header.html' %}
     {% endblock %}
 
-    <!--=============== MAIN ===============-->
-    <main class="main">
-      <!--=============== BREADCRUMB ===============-->
+    <main class="main" id="app">
       <section class="breadcrumb">
         <ul class="breadcrumb__list flex container">
           <li><a href="index.html" class="breadcrumb__link">Home</a></li>
@@ -38,58 +33,59 @@
         </ul>
       </section>
 
-      <!--=============== LOGIN-REGISTER ===============-->
-      <section class="login-register section--lg">
-        <div class="login-register__container container grid">
-          <div class="register">
-            <h3 class="section__title">Create an Account</h3>
-            <form class="form grid">
-              <input
-                type="text"
-                placeholder="Username"
-                class="form__input"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                class="form__input"
-              />
-              <input
-                type="password"
-                placeholder="Your Password"
-                class="form__input"
-              />
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                class="form__input"
-              />
-              <div class="form__btn">
-                <button class="btn">Submit & Register</button>
-              </div>
-            </form>
-          </div>
-          <div class="form__btn">
-            <a class="btn" href="login.html">Login</a>
-          </div>
+      <section class="flex justify-center items-center w-full my-14">
+        <div class="register w-1/2">
+          <h3 class="section__title">Create an Account</h3>
+          <form class="form grid" @submit.prevent="register">
+            <input
+              v-model="username"
+              type="text"
+              placeholder="Username"
+              class="form__input"
+            />
+            <input
+              v-model="email"
+              type="email"
+              placeholder="Your Email"
+              class="form__input"
+            />
+            <input
+              v-model="password"
+              type="password"
+              placeholder="Your Password"
+              class="form__input"
+            />
+            <input
+              v-model="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              class="form__input"
+            />
+            <div class="form__btn">
+              <button class="btn" :disabled="loading">Register</button>
+            </div>
+          </form>
+          <p class="text-center mt-4">
+            Already have an account ?
+            <a href="login.html" class="text-blue-500 hover:underline">
+              Login
+            </a>
+          </p>
         </div>
       </section>
 
-      <!--=============== NEWSLETTER ===============-->
       {% block newsletter %}
       {% include 'home/newsletter.html' %}
       {% endblock %}
     </main>
 
-    <!--=============== FOOTER ===============-->
     {% block footer %}
     {% include 'home/footer.html' %}
     {% endblock %}
 
-    <!--=============== SWIPER JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <!--=============== MAIN JS ===============-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="/static/js/register.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
