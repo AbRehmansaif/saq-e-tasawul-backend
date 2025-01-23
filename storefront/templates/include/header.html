@@ -10,21 +10,21 @@
       <div class="flex">
         {% if request.user.is_authenticated %}
           <div>
-            <a href="{% url 'accounts' %}" class="header__top-action">
+            <a href="accounts.html" class="header__top-action">
               My Account
             </a>
             <span>/</span>
-            <a href="{% url 'logout' %}" class="header__top-action">
+            <a href="#" class="header__top-action">
               Log Out
             </a>
           </div>
         {% else %}
           <div>
-            <a href="{% url 'login' %}" class="header__top-action">
+            <a href="login.html" class="header__top-action">
               Log In
             </a>
             <span>/</span>
-            <a href="{% url 'register' %}" class="header__top-action">
+            <a href="register.html" class="header__top-action">
               Sign Up
             </a>
           </div>
