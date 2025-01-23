@@ -174,25 +174,35 @@ document.addEventListener('click', (e) => {
 
 // Add to Wishlist
 function addToWishlist(product) {
-    if (wishlist.some(item => item.name === product.name)) {
-        alert(`The item "${product.name}" is already in the wishlist!`);
-        return;
+    if(IS_LOGGED_IN === false){
+        alert('Please login to add to wishlist');
+        window.location.href = '/login.html';
+    }else{
+        if (wishlist.some(item => item.name === product.name)) {
+            alert(`The item "${product.name}" is already in the wishlist!`);
+            return;
+        }
+        wishlist.push(product);
+        updateStorage();
+        renderWishlist();
     }
-    wishlist.push(product);
-    updateStorage();
-    renderWishlist();
 }
 
 // Add to Cart
 function addToCart(product) {
-    const existingItem = cart.find(item => item.name === product.name);
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ ...product, quantity: 1 });
+    if(IS_LOGGED_IN === false){
+        alert('Please login to add to cart');
+        window.location.href = '/login.html';
+    }else{
+        const existingItem = cart.find(item => item.name === product.name);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        updateStorage();
+        renderCart();
     }
-    updateStorage();
-    renderCart();
 }
 
 // Render Wishlist

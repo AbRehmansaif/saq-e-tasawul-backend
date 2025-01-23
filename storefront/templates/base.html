@@ -19,12 +19,12 @@
     <title>Ecommerce Website</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body id="app">
     {% block header %}
     {% include 'include/header.html' %}
     {% endblock %}
 
-    <main class="main" id="app">
+    <main class="main" >
       {% block breadcrumbs %}
       <section class="breadcrumb">
         <ul class="breadcrumb__list flex container">
