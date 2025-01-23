@@ -1,0 +1,62 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="flex justify-center items-center w-full my-14">
+    <div class="register w-1/2">
+      <h3 class="section__title">Create an Account</h3>
+      <form class="form grid" @submit.prevent="register">
+        <input
+          v-model="firstName"
+          type="text"
+          placeholder="First Name"
+          class="form__input"
+        />
+        <input
+          v-model="lastName"
+          type="text"
+          placeholder="Last Name"
+          class="form__input"
+        />
+        <input
+          v-model="phone"
+          type="text"
+          placeholder="Phone Number"
+          class="form__input"
+        />
+        <input
+          v-model="email"
+          type="email"
+          placeholder="Your Email"
+          class="form__input"
+        />
+        <input
+          v-model="password"
+          type="password"
+          placeholder="Your Password"
+          class="form__input"
+        />
+        <input
+          v-model="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+          class="form__input"
+        />
+        <div class="form__btn">
+          <button class="btn" :disabled="loading">Register</button>
+        </div>
+      </form>
+      <p class="text-center mt-4">
+        Already have an account ?
+        <a href="login.html" class="text-blue-500 hover:underline">
+          Login
+        </a>
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block extrascripts %}
+<script src="{% static 'js/register.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <title>Ecommerce Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    {% block header %}
+    {% include 'include/header.html' %}
+    {% endblock %}
+
+    <main class="main" id="app">
+      {% block breadcrumbs %}
+      <section class="breadcrumb">
+        <ul class="breadcrumb__list flex container">
+          <li><a href="index.html" class="breadcrumb__link">Home</a></li>
+          <li><span class="breadcrumb__link">></span></li>
+          <li><span class="breadcrumb__link">{{ authPage }}</span></li>
+        </ul>
+      </section>
+      {% endblock %}
+
+      {% block content %}
+      {% endblock %}
+
+      {% block newsletter %}
+      {% include 'include/newsletter.html' %}
+      {% endblock %}
+    </main>
+
+    {% block footer %}
+    {% include 'include/footer.html' %}
+    {% endblock %}
+
+    <script>
+      const CSRF_TOKEN = "{{ csrf_token }}";
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    {% block extrascripts %}
+    {% endblock %}
+  </body>
+</html>

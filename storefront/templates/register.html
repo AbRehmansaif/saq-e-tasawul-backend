@@ -38,9 +38,21 @@
           <h3 class="section__title">Create an Account</h3>
           <form class="form grid" @submit.prevent="register">
             <input
-              v-model="username"
+              v-model="firstName"
               type="text"
-              placeholder="Username"
+              placeholder="First Name"
+              class="form__input"
+            />
+            <input
+              v-model="lastName"
+              type="text"
+              placeholder="Last Name"
+              class="form__input"
+            />
+            <input
+              v-model="phone"
+              type="text"
+              placeholder="Phone Number"
               class="form__input"
             />
             <input
@@ -83,8 +95,12 @@
     {% include 'home/footer.html' %}
     {% endblock %}
 
+    <script>
+      const CSRF_TOKEN = "{{ csrf_token }}";
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/static/js/register.js"></script>
     <script src="assets/js/main.js"></script>
   </body>

@@ -17,7 +17,9 @@ def login(request):
     return render(request, 'login.html')
 
 def register(request):
-    return render(request, 'register.html')
+    return render(request, 'auth/register.html', context={
+        'authPage': 'Register'
+    } )
 
 def forget(request):
     return render(request, 'forget.html')

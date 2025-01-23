@@ -22,7 +22,7 @@ STATICFILES_DIRS = [
 ]
 
 # When you run collectstatic in production, static files will be collected here
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
