@@ -1,81 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% extends 'base.html' %}
+{% load static %}
 
-    <!--=============== FLATICON ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
-    />
+{% block content %}
+<section class="wishlist section--lg container">
+  <div class="table__container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Stock Status</th>
+          <th>Action</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
 
-    <!--=============== SWIPER CSS ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
+      </tbody>
+    </table>
+  </div>
+</section>
 
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="/static/css/styles.css" />
-
-    <title>Ecommerce Website</title>
-  </head>
-  <body>
-    <!--=============== HEADER ===============-->
-    {% block header %}
-    {% include 'home/header.html' %}
-    {% endblock %}
-
-    <!--=============== MAIN ===============-->
-    <main class="main">
-      <!--=============== BREADCRUMB ===============-->
-      <section class="breadcrumb">
-        <ul class="breadcrumb__list flex container">
-          <li><a href="index.html" class="breadcrumb__link">Home</a></li>
-          <li><span class="breadcrumb__link"></span>></li>
-          <li><span class="breadcrumb__link">Shop</span></li>
-          <li><span class="breadcrumb__link"></span>></li>
-          <li><span class="breadcrumb__link">Wishlist</span></li>
-        </ul>
-      </section>
-
-      <!--=============== WISHLIST ===============-->
-      <section class="wishlist section--lg container">
-        <div class="table__container">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock Status</th>
-                <th>Action</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!--=============== NEWSLETTER ===============-->
-      {% block newsletter %}
-      {% include 'home/newsletter.html' %}
-      {% endblock %}
-    </main>
-
-    <!--=============== FOOTER ===============-->
-    {% block footer %}
-    {% include 'home/footer.html' %}
-    {% endblock %}
-
-    <!--=============== SWIPER JS ===============-->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <!--=============== MAIN JS ===============-->
-    <script src="/static/js/main.js"></script>
-  </body>
-</html>
+{% endblock %}
+{% block extrascripts %}
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}  

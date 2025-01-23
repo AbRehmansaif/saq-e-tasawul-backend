@@ -5,10 +5,14 @@ def home(request):
     return render(request, 'home/home.html', context)
 
 def wishlist(request):
-    return render(request, 'wishlist.html')
+    return render(request, 'wishlist.html', context={
+        'authPage': 'Wishlist'
+    } )
 
 def cart(request):
-    return render(request, 'cart.html')
+    return render(request, 'cart.html', context={
+        'authPage': 'Cart'
+    } )
 
 def shop(request):
     return render(request, 'shop.html')
@@ -25,3 +29,6 @@ def register(request):
 
 def forget(request):
     return render(request, 'forget.html')
+
+def account(request):
+    return render(request, 'accounts.html')
