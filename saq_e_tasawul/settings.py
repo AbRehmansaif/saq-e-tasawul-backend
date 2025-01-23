@@ -18,11 +18,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'src/static'),  # This will include static files from the 'src/static' folder
+    os.path.join(BASE_DIR, 'static'),  # This will include static files from the 'src/static' folder
 ]
 
 # When you run collectstatic in production, static files will be collected here
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/

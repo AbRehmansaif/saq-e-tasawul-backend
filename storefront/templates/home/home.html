@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+{% block banner %}
+{% include 'include/banner.html' %}
+{% endblock %}
+
+<!--=============== CATEGORIES ===============-->
+{% block categories %}
+{% include 'home/categories.html' %}
+{% endblock %}
+<!--=============== PRODUCTS ===============-->
+
+{% block products %}
+{% include 'home/products.html' %}
+{% endblock %}
+<!--=============== DEALS ===============-->
+
+{% block deals %}
+{% include 'home/deals.html' %}
+{% endblock %}
+<!--=============== NEW ARRIVALS ===============-->
+{% block new_arrivals %}
+{% include 'home/new_arrivals.html' %}
+{% endblock %}
+
+<!--=============== SHOWCASE ===============-->
+
+{% block showcase %}
+{% include 'home/showcase.html' %}
+{% endblock %}
+
+{% endblock %}
+{% block extrascripts %}
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

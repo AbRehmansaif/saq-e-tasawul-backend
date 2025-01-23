@@ -1,5 +1,6 @@
-{% extends 'auth/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
+
 
 {% block content %}
 <section class="flex justify-center items-center w-full my-14">
@@ -57,6 +58,6 @@
 {% endblock %}
 
 {% block extrascripts %}
-<script src="{% static 'js/register.js' %}"></script>
-<script src="{% static 'assets/js/main.js' %}"></script>
+<script src="{% static '/js/register.js' %}"></script>
+<script src="{% static '/js/main.js' %}"></script>
 {% endblock %}
