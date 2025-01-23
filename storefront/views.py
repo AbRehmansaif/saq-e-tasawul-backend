@@ -15,7 +15,9 @@ def cart(request):
     } )
 
 def shop(request):
-    return render(request, 'shop.html')
+    return render(request, 'shop.html', context={
+        'authPage': 'Shop'
+    })
 
 def login(request):
     return render(request, 'auth/login.html', context={
@@ -28,7 +30,11 @@ def register(request):
     } )
 
 def forget(request):
-    return render(request, 'forget.html')
+    return render(request, 'forget.html', context={
+        'authPage': 'Forget'
+    })
 
 def account(request):
-    return render(request, 'accounts.html')
+    return render(request, 'accounts.html', context={
+        'authPage': 'Account'
+    })
