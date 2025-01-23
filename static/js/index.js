@@ -1,7 +1,11 @@
 const { createApp, ref } = Vue
+console.log('HELLO: ', IS_LOGGED_IN);
 
   createApp({
     setup() {
+      const isLoggedIn = ref(IS_LOGGED_IN);
+      console.log('Logedin: ', isLoggedIn.value);
+      
       const categories = ref([
         {
             img:'/static/img/category-1.jpg',
@@ -28,7 +32,8 @@ const { createApp, ref } = Vue
         }
       ])
       return {
-        categories
+        categories,
+        isLoggedIn,
       }
     }
   }).mount('#app')
