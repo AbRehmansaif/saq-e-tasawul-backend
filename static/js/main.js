@@ -219,7 +219,7 @@ function renderWishlist() {
                       </div>
                       <h3 class="empty-state__title">Your wishlist is empty</h3>
                       <p class="empty-state__text">Looks like you haven't added any items to your wishlist yet.</p>
-                      <a href="/shop" class="btn">
+                      <a href="shop.html" class="btn">
                           <i class="fi fi-rs-shopping-bag"></i>
                           Continue Shopping
                       </a>
@@ -272,7 +272,7 @@ function renderCart() {
                       </div>
                       <h3 class="empty-state__title">Your cart is empty</h3>
                       <p class="empty-state__text">Looks like you haven't added any items to your cart yet.</p>
-                      <a href="/shop" class="btn">
+                      <a href="shop.html" class="btn">
                           <i class="fi fi-rs-shopping-bag"></i>
                           Continue Shopping
                       </a>
