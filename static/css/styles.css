@@ -233,7 +233,10 @@ table {
 }
 
 .nav__logo-img {
-  width: 120px;
+  /* border: 1px solid black; */
+  /* margin-top: 5px; */
+  width: 125px;
+  /* height: 84px; */
 }
 
 .nav__menu {
@@ -979,7 +982,7 @@ table {
 }
 
 .footer__logo-img {
-  width: 120px;
+  width: 143px;
 }
 
 .footer__subtitle {
@@ -1746,7 +1749,7 @@ table {
   }
 
   .nav__logo-img {
-    width: 116px;
+    width: 125px;
   }
 
   .nav__menu {

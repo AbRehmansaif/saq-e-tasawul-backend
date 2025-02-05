@@ -38,3 +38,8 @@ def account(request):
     return render(request, 'accounts.html', context={
         'authPage': 'Account'
     })
+    
+def details(request):
+    return render(request, 'details.html', context={
+        'authPage': 'Details'
+    })
